@@ -21,10 +21,20 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
           script: |
-            TARGET_DIR="/home/devstudi/automation.kimino.my.id" 
-            cd $TARGET_DIR
+            PARENT_DIR="/home/devstudi/automation.kimino.my.id"
+            PROJECT_NAME="automation.kimino.my.id"
 
-            git remote set-url origin git@github.com:98hub/ci.cd-cpanel.git
-            git pull origin main 
+            cd $PARENT_DIR
 
-            echo "Deployment SSH Selesai!"
+            if [ ! -d "$PROJECT_NAME/.git" ]; then
+              echo "Melakukan GIT CLONE..."
+              git clone git@github.com:98hub/ci.cd-cpanel.git $PROJECT_NAME
+              echo "CLONE berhasil. Deployment pertama selesai."
+            else
+              echo "Repositori sudah ada. Melakukan GIT PULL..."
+              cd $PROJECT_NAME
+              git pull origin main
+              echo "PULL berhasil."
+            fi
+
+            echo "CI/CD SSH Selesai!"
