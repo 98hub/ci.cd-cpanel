@@ -1,4 +1,4 @@
-name: Deploy ke cPanel via FTP
+name: Deploy via SSH
 on:
   push:
     branches:
@@ -10,12 +10,18 @@ jobs:
     steps:
       - name: Checkout kode
         uses: actions/checkout@v4
-        
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: "./"
-          protocol: ftps
+          # --- Kredensial GitHub Secrets ---
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+          script: |
+            TARGET_DIR="/home/devstudi/automation.kimino.my.id" 
+            cd $TARGET_DIR
+            git pull origin main 
+
+            echo "Deployment SSH Selesai!"
