@@ -21,7 +21,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
           script: |
-            PARENT_DIR="/home/devstudi/automation.kimino.my.id"
+            PARENT_DIR="/home/devstudi"
             PROJECT_NAME="automation.kimino.my.id"
 
             cd $PARENT_DIR
