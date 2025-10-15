@@ -18,10 +18,13 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+
           script: |
             TARGET_DIR="/home/devstudi/automation.kimino.my.id" 
             cd $TARGET_DIR
+
+            git remote set-url origin git@github.com:98hub/ci.cd-cpanel.git
             git pull origin main 
 
             echo "Deployment SSH Selesai!"
