@@ -3,17 +3,23 @@
 Implementing **CI/CD in cPanel** enables automated build, test, and deployment processes directly from a **GitHub repository**.  
 With an efficient pipeline integration, every code change can be quickly and consistently deployed to production — improving **reliability, speed,** and **overall application development quality.**
 
+> 📘 **Recommended Tutorial:**  
+> Read the full guide here 👉  
+> [Implementing CI/CD to cPanel – Kimino.my.id](https://kimino.my.id/articles/implementasi-cicd-ke-cpanel)
+
 ---
 
 ## 📦 Project Structure
 
+```bash
 ci.cd-cpanel/
-├── .github/
-│ └── workflows/
-│ └── deploy.yml # GitHub Actions workflow for CI/CD
-├── index.html # Main HTML page
-├── style.css # Stylesheet
-└── .gitignore # Ignored files list
+├── .github
+│   └── workflows
+│       └── deploy.yml
+├── index.html
+├── style.css
+└── .gitignore
+```
 
 ---
 
